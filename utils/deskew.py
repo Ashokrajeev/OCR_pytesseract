@@ -44,10 +44,10 @@ M = cv2.getRotationMatrix2D(center, angle, 1.0)
 rotated = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
 
 # draw the correction angle on the image so we can validate it
-cv2.putText(rotated, "Angle: {:.2f} degrees".format(angle),(10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+# cv2.putText(rotated, "Angle: {:.2f} degrees".format(angle),(10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
 # show the output image
 # print("[INFO] angle: {:.3f}".format(angle))
 cv2.imwrite("utils/tmp.jpg", image)
 cv2.imwrite("utils/tmp.jpg", rotated)
-cv2.waitKey(0)
+# cv2.waitKey(0)

@@ -42,8 +42,11 @@ gray = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRE
 
 methods["adaptive"] = remove_noise(gray)
 
-for val in methods.keys():
+f = open("utils/Output.txt","w")
 
+
+for val in methods.keys():
+    f.write("************ "+val+" ************\n\n")
     # write the grayscale image to disk as a temporary file
     filename = "utils/"+val+".png".format(os.getpid())
     cv2.imwrite(filename, methods[val])
@@ -52,15 +55,18 @@ for val in methods.keys():
     # apply OCR
     # delete temp image
     text = pytesseract.image_to_string(Image.open(filename))
-    # os.remove(filename)
+    os.remove(filename)
 
     # TO-DO : Additional processing such as spellchecking for OCR errors or NLP
     text = text.split("\n")
-    f = open("utils/"+val+".txt","w")
+    
     for line in text:
         if(len(line.strip()) > 0):
-            print(line)
+            # print(line)
             f.write(line+"\n")
-    f.close()
-    print("\n\n************************\n\n")
+    f.write("\n\n")
+    
+    # print("\n\n************************\n\n")
+
+f.close()
 
